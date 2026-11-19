@@ -5,6 +5,7 @@ from sklearn.multioutput import MultiOutputRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
+import optuna
 
 df = pd.read_csv("data-recovery.csv")
 
@@ -42,14 +43,14 @@ for kp in range(23):
     regressors[f"kp{kp}"] = multi_output_model
 
     y_pred = multi_output_model.predict(X_test)
-    rmse_x = mean_squared_error(y_test.iloc[:, 0], y_pred[:, 0])
-    rmse_y = mean_squared_error(y_test.iloc[:, 1], y_pred[:, 1])
+    mse_x = mean_squared_error(y_test.iloc[:, 0], y_pred[:, 0])
+    mse_y = mean_squared_error(y_test.iloc[:, 1], y_pred[:, 1])
     r2_x = r2_score(y_test.iloc[:, 0], y_pred[:, 0])
     r2_y = r2_score(y_test.iloc[:, 1], y_pred[:, 1])
 
     print(f"=== kp{kp} ===")
-    print(f"X - RMSE: {rmse_x:.2f}, R2: {r2_x:.2f}")
-    print(f"Y - RMSE: {rmse_y:.2f}, R2: {r2_y:.2f}")
+    print(f"X - MSE: {mse_x:.2f}, R2: {r2_x:.2f}")
+    print(f"Y - MSE: {mse_y:.2f}, R2: {r2_y:.2f}")
     print("--------")
 
 
@@ -104,41 +105,3 @@ for ax, title, data, color in zip(axs, titles, data_sets, colors):
 
 plt.tight_layout()
 plt.show()
-
-
-
-# Vyhodnocení: srovnání regrese vs neuronová síť (první predikce)
-improved_counts = []
-
-for idx, row in df.iterrows():
-    improved = 0
-    print(f"Vyhodnocuji řádek {idx}")
-    for kp in range(23):
-        model = regressors[f"kp{kp}"]
-        feature_names = feature_names_per_kp[kp]
-
-        # Získání vstupních hodnot podle uložených názvů
-        feature_values = [row[f] for f in feature_names]
-        X_input = pd.DataFrame([feature_values], columns=feature_names)
-
-        x_pred, y_pred = model.predict(X_input)[0]
-
-        x_true = row[f"target_kp{kp}_x"]
-        y_true = row[f"target_kp{kp}_y"]
-
-        x_neur = row[f"pred_kp{kp}_pos0_x"]
-        y_neur = row[f"pred_kp{kp}_pos0_y"]
-
-        dist_rf = np.linalg.norm([x_pred - x_true, y_pred - y_true])
-        dist_neur = np.linalg.norm([x_neur - x_true, y_neur - y_true])
-
-        if dist_rf < dist_neur:
-            improved += 1
-
-    improved_counts.append(improved)
-
-total = len(df) * 23
-better_rf_total = sum(improved_counts)
-percentage_better = better_rf_total / total * 100
-
-print(f"Regrese byla přesnější než první návrh neuronky ve {better_rf_total} případech z {total} ({percentage_better:.2f} %)")
