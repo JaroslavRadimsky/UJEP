@@ -171,3 +171,17 @@ cython_debug/
 *.csv
 *.xls
 
+# Local course environments, datasets, and generated files
+/DAZ/output/pdf/preview-*.png
+/ODM/AdventureWorksDW2019.bak
+/ODM/seminarka_spravne/ODM_seminarka/**/bin/
+/ODM/seminarka_spravne/ODM_seminarka/**/obj/
+/ODM/seminarka_spravne/ODM_seminarka/**/*.user
+/PYR/.notebook_deps/
+/PYR/*/.jupyter/
+/PYR/*/.matplotlib/
+/PYR/*/tmp/
+/USU/bees/checkpoint.pth
+/USU/bees/runs/
+/USU/keras_tuner_dir/
+/USU/lomy/
