@@ -1,0 +1,4 @@
+průběh zkoušky: dostaneme 2 otázky, 
+1. verze z regresních modelu (mnohonásobná, loess, ...)
+2. regresní metody: musíme vysvětlit včetně příkladů
+- když nebude vědět známku tak další otázka na fuzzy logiku ne bayesovksé sítě
