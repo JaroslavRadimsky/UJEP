@@ -1,0 +1,26 @@
+WITH 
+  MEMBER [Measures].[Order Share %] AS
+    100 * (
+      [Measures].[Order Quantity] /
+      (SUM(
+        NONEMPTY(
+          [Dim Customer].[Total Children].[Total Children].MEMBERS,
+          [Measures].[Order Quantity]
+        ),
+        [Measures].[Order Quantity]
+      ))
+    )
+
+SELECT 
+  {[Measures].[Order Quantity], [Measures].[Order Share %]} ON COLUMNS,
+
+  ORDER(
+    NONEMPTY(
+      [Dim Customer].[Total Children].[Total Children].MEMBERS,
+      [Measures].[Order Quantity]
+    ),
+    [Measures].[Order Quantity],
+    BDESC
+  ) ON ROWS
+
+FROM [Adventure Works DW2019]

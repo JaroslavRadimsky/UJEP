@@ -1,0 +1,8 @@
+SELECT NON EMPTY
+  ORDER(
+    [Dim Product].[Color].[Color].MEMBERS,
+    [Measures].[Fact Internet Sales Count],
+    BDESC
+  ) ON ROWS,
+  [Measures].[Fact Internet Sales Count] ON COLUMNS
+FROM [Adventure Works DW2019]

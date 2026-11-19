@@ -1,0 +1,8 @@
+SELECT 
+  TOPCOUNT(
+    [Dim Product].[English Product Name].[English Product Name].MEMBERS,
+    5,
+    [Measures].[Fact Internet Sales Count]
+  ) ON ROWS,
+  [Measures].[Fact Internet Sales Count] ON COLUMNS
+FROM [Adventure Works DW2019]

@@ -1,0 +1,8 @@
+SELECT 
+  [Measures].[Fact Internet Sales Count] ON COLUMNS,
+  ORDER(
+    [Order Date].[English Day Name Of Week].[English Day Name Of Week].MEMBERS,
+    [Measures].[Fact Internet Sales Count],
+    BDESC
+  ) ON ROWS
+FROM [Adventure Works DW2019]

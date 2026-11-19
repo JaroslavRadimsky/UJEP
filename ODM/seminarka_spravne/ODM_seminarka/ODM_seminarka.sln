@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "ODM_seminarka", "ODM_seminarka\ODM_seminarka.dwproj", "{DECC109B-20E0-1C01-8D56-58A1EE515F1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DECC109B-20E0-1C01-8D56-58A1EE515F1D}.Development|Default.ActiveCfg = Development
+		{DECC109B-20E0-1C01-8D56-58A1EE515F1D}.Development|Default.Build.0 = Development
+		{DECC109B-20E0-1C01-8D56-58A1EE515F1D}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C6D8F4E-1E92-497B-933D-4315EC3C33C6}
+	EndGlobalSection
+EndGlobal
