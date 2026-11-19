@@ -11,6 +11,7 @@ library(lmtest)
 # Zkusime najit optimalni model pro rady nottem, UKDriverDeaths
 
 plot(nottem)
+help(nottem)
   # Average Monthly Temperatures at Nottingham, 1920–1939
   # evidentne sezonni rada
 par(mfrow = c(2,1))

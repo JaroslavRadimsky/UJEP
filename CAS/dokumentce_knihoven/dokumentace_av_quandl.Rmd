@@ -1,0 +1,55 @@
+---
+title: "Dokumentace alphavantager a Quandl"
+author: "Radimský, Patera"
+date: "2025-04-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 📈 Získání dat přes Alpha Vantage
+
+Pro přístup k datům z [Alpha Vantage](https://www.alphavantage.co/) je potřeba vytvořit účet a získat vlastní API klíč.
+
+```{r alphavantage}
+# Instalace a načtení knihovny (pokud není nainstalovaná)
+# install.packages("alphavantager")
+library(alphavantager)
+
+# Nastavení API klíče
+av_api_key("API_KEY")
+
+# Získání dat pro akcii Microsoft (MSFT) v 15min intervalech
+av_data <- av_get(
+  symbol = "MSFT",
+  av_fun = "TIME_SERIES_INTRADAY",
+  interval = "15min",
+  outputsize = "full"
+)
+
+# Náhled dat
+head(av_data)
+```
+
+## 💱 Získání dat z Quandl (nyní již zastaralá knihovna)
+
+Pro přístup k datasetům na [data.nasdaq.com](https://data.nasdaq.com/) je nutné mít účet a API klíč.
+
+```{r quandl}
+# Instalace a načtení knihovny (pokud není nainstalovaná)
+# install.packages("Quandl")
+library(Quandl)
+
+# Nastavení API klíče
+Quandl.api_key("API_KEY")
+
+# Získání dat z datatable QDL/BCHAIN s kódem 'TVTVR'
+quandl_bitcoin <- Quandl.datatable("QDL/BCHAIN", code = "TVTVR")
+
+# Náhled dat
+head(quandl_bitcoin)
+```
+
+> 🔎 Poznámka: Na portálu Nasdaq Data Link je zdarma dostupných pouze několik datových sad. Pro plný přístup může být vyžadováno placené členství.
