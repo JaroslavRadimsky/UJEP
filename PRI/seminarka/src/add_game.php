@@ -335,9 +335,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
                     <?php $first = true; ?>
                     <?php foreach ($xml->game as $game): ?>
                         <?php if (!$first) echo ','; ?>
-                        '<?= htmlspecialchars((string)$game->name) ?>': '<?= htmlspecialchars((string)$game['id']) ?>-fields'
+                        '<?= htmlspecialchars((string)$game->name, ENT_QUOTES, 'UTF-8') ?>': '<?= htmlspecialchars((string)$game['id'], ENT_QUOTES, 'UTF-8') ?>-fields'
                         <?php $first = false; ?>
                     <?php endforeach; ?>
+                <?php else: ?>
+                    // Empty object if no games are available
                 <?php endif; ?>
             };
 
